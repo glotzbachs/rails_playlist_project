@@ -1,0 +1,4 @@
+1.  users  name, email, password
+    sessions    
+    playlists name, song_id, user_id  
+    songs  :name, :genre, :artist_name, :web_address
