@@ -1,0 +1,23 @@
+<%= form_for @playlist do |f| %>
+
+<%if @playlist.errors%>
+    <% @playlist.errors.full_messages.each do |full_message|%>
+        <%= full_message %>
+    <%end%>
+<%end%>
+
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <br>
+    <%= f.label :song %>
+    <%= f.collection_select :song_ids, Song.all, :id, :title %>
+    <br>
+    <%= f.fields_for :song, @playlist.songs.build do |songs_fields|%>
+        <%= songs_fields.text_field :title%>
+    <% end %>
+
+    <%= f.submit%>
+<% end %>

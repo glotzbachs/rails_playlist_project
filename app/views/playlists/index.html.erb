@@ -1,0 +1,9 @@
+<h1>Your Playlists</h1>
+
+<ul>
+<% @playlists.each do |playlist| %>
+   <p> <%= playlist.title%> - <%= playlist.song_count %> songs</p>
+<%end%>
+</ul>
+
+<%= link_to 'New Playlist', new_playlist_path %>

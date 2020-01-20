@@ -1,0 +1,10 @@
+<h1><%@song.title%></h1>
+
+<ul>
+    Artist: <%= @song.artist %>
+    Genre: <%= @song.genre %>
+    Album: <%= @song.album %>
+    Link: <%= @song.web_adress %>
+</ul>
+
+<%= link_to 'Edit Song', edit_song_path %>
