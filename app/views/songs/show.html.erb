@@ -1,10 +1,19 @@
-<h1><%@song.title%></h1>
+<h1><%= @song.title%></h1>
 
-<ul>
+<p>
     Artist: <%= @song.artist %>
+    <br>
     Genre: <%= @song.genre %>
+    <br>
     Album: <%= @song.album %>
-    Link: <%= @song.web_adress %>
-</ul>
+    <br>
+    Link: <%= link_to @song.web_address, @song.web_address %>
+    <br>
+    Playlist: <%= link_to @song.playlist.title, playlist_path(@song.playlist) %>
+</p>
 
 <%= link_to 'Edit Song', edit_song_path %>
+<br>
+<%= link_to 'Delete Song', song_path(@song), method: 'delete' %>
+<br>
+<%= link_to 'Back to All Songs', songs_path %>

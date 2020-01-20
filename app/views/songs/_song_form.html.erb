@@ -6,6 +6,8 @@
     <%end%>
 <%end%>
 
+<br>
+
     <%= f.label :title %>
     <%= f.text_field :title %>
     <br>
@@ -18,8 +20,11 @@
     <%= f.label :album %>
     <%= f.text_field :album %>
     <br>
+    <%= f.label :web_address %>
+    <%= f.text_field :web_address %>
+    <br>
     <%= f.label :playlist %>
-    <%= f.collection_check_boxes :playlist_id, Playlist.all, :id, :title %>
+    <%= f.collection_select :playlist_id, Playlist.all, :id, :title, include_blank: "Select Playlist"%>
     <br>
     <%= f.fields_for :playlist, @song.build_playlist do |playlist_fields|%>
         <%= playlist_fields.text_field :title%>

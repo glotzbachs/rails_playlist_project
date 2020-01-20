@@ -1,6 +1,8 @@
 class PlaylistsController < ApplicationController
+  before_action :user_signed_in?
+
   def index
-    @playlists=current_user.playlists
+    @playlists=Playlist.all
   end
 
   def show
@@ -17,8 +19,8 @@ class PlaylistsController < ApplicationController
 
   def create
     if user_signed_in?
+      verify_id
       @playlist=current_user.playlists.build(playlist_params)
-      binding.pry
       if @playlist.save
         redirect_to @playlist
       else
@@ -35,7 +37,7 @@ class PlaylistsController < ApplicationController
 
   def update
     @playlist=Playlist.find_by(id: params[:id])
-    if @playlist.update
+    if @playlist.update(update_params)
       redirect_to @playlist
     else
       render :edit
@@ -51,6 +53,16 @@ class PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:title, :description, :user_id, song_ids:[], songs_attributes: [:name])
+    params.require(:playlist).permit(:title, :description, :user_id, song_ids:[], songs_attributes: [:title, :user_id, :playlist_id])
+  end
+
+  def update_params
+    params.require(:playlist).permit(:title, :description, song_ids:[], songs_attributes: [:title])
+  end
+
+  def verify_id
+    if params[:user_id]!= current_user.id
+      params[:user_id]=current_user.id
+    end
   end
 end

@@ -1,10 +1,11 @@
 <h1><%= @playlist.title %></h1>
-<ul>
+
+<p>
     <% @playlist.songs.each do |song| %>
-        <% link_to song.title, song_path(song) %>
+        <%= link_to song.title, song_path(song) %>
     <% end %>
-</ul>
+</p>
 
 <%= link_to 'Edit Playlist', edit_playlist_path %>
 <%= link_to 'Add Song', new_playlist_song_path(@playlist, @playlist.songs) %>
-<%= link_to 'Delete Playlist', method:'delete' %>
+<%= link_to 'Delete Playlist', playlist_path(@playlist), method:'delete' %>
