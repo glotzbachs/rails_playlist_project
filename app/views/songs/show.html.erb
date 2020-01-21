@@ -10,7 +10,7 @@
     Link: <%= link_to @song.web_address, @song.web_address %>
     <br>
     <br>
-    Playlist: <%= link_to @song.playlist.title, playlist_path(@song.playlist) %>
+    Playlist: <%= link_to @song.playlist.title, playlist_path(@song.playlist) if @song.playlist%>
 </p>
 <br>
 <%= link_to 'Edit Song', edit_song_path %>
@@ -20,4 +20,4 @@
 <br>
 <%= link_to 'Back to All Songs', songs_path %>
 <br>
-<%= link_to 'Back to All Plalists', playlists_path %>
+<%= link_to 'Back to All Playlists', playlists_path %>

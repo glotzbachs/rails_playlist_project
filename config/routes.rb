@@ -16,4 +16,6 @@ Rails.application.routes.draw do
     resources :songs, only: [:show, :new, :edit]
   end
 
+  get '/playlists/user_playlists', to: 'playlists#user_playlists'
+
 end

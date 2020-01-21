@@ -1,24 +1,26 @@
 class PlaylistsController < ApplicationController
-  before_action :user_signed_in?
-
+  
   def index
     @playlists=Playlist.all
+  end
+
+  def user_playlists
+    @playlists=current_user.playlists
   end
 
   def show
     @playlist=Playlist.find_by(id: params[:id])
   end
 
+  def user_playlists
+    @playlists=current_user.playlists
+  end
+
   def new
-    if user_signed_in?
       @playlist=current_user.playlists.build
-    else
-      redirect_to new_user_session_path
-    end
   end
 
   def create
-    if user_signed_in?
       verify_id
       @playlist=current_user.playlists.build(playlist_params)
       if @playlist.save
@@ -26,17 +28,15 @@ class PlaylistsController < ApplicationController
       else
        render :new
       end
-    else
-      redirect_to new_user_session_path
-    end
   end
 
   def edit
-    @playlist=Playlist.find_by(id: params[:id])
+    @playlist=current_user.playlists.find_by(id: params[:id])
   end
 
   def update
-    @playlist=Playlist.find_by(id: params[:id])
+    verify_id
+    @playlist=current_user.playlists.find_by(id: params[:id])
     if @playlist.update(update_params)
       redirect_to @playlist
     else
@@ -45,7 +45,7 @@ class PlaylistsController < ApplicationController
   end
 
   def destroy
-    @playlist=Playlist.find_by(id: params[:id])
+    @playlist=current_user.playlists.find_by(id: params[:id])
     @playlist.destroy
     redirect_to playlists_path
   end

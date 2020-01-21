@@ -1,3 +1,11 @@
 <h1>Edit Song</h1>
 
-<%= render 'song_form' %>
+<% if !@song %>
+
+    <h3>Sorry, you do not have access to this action.</h3>
+
+<% else %>
+
+    <%= render 'song_form' %>
+
+<% end %>

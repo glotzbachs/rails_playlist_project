@@ -1,5 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
     
+    # skip_before_action :require_login, if: :devise_controller?
+
     private
 
     def signup_params
