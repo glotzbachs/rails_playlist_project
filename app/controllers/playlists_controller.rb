@@ -57,7 +57,7 @@ class PlaylistsController < ApplicationController
   end
 
   def update_params
-    params.require(:playlist).permit(:title, :description, song_ids:[], songs_attributes: [:title])
+    params.require(:playlist).permit(:title, :description)
   end
 
   def verify_id

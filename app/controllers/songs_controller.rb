@@ -12,6 +12,9 @@ class SongsController < ApplicationController
   def new
     if user_signed_in?
       @song=current_user.songs.build
+      if @song.playlist
+        @playlist=@song.playlist
+      end
     else
       redirect_to new_user_session_path
     end

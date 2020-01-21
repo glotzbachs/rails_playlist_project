@@ -5,5 +5,5 @@ class Song < ApplicationRecord
     accepts_nested_attributes_for :playlist, reject_if: proc{|attr| attr[:title].blank?}
 
     validates :title, presence: true
-
+    
 end
