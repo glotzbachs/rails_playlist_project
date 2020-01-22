@@ -7,7 +7,8 @@
     <br>
     Album: <%= @song.album %>
     <br>
-    Link: <%= link_to @song.web_address, @song.web_address %>
+    <%#binding.pry%>
+    Link: <%= link_to @song.web_address, @song.web_address if @song.web_address%>
     <br>
     <br>
     Playlist: <%= link_to @song.playlist.title, playlist_path(@song.playlist) if @song.playlist%>
@@ -16,8 +17,3 @@
 <%= link_to 'Edit Song', edit_song_path %>
 <br>
 <%= link_to 'Delete Song', song_path(@song), method: 'delete' %>
-<br>
-<br>
-<%= link_to 'Back to All Songs', songs_path %>
-<br>
-<%= link_to 'Back to All Playlists', playlists_path %>

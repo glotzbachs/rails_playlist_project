@@ -1,19 +1,15 @@
 class PlaylistsController < ApplicationController
   
+  def user_playlists
+    @playlists=current_user.playlists.uniq
+  end
+
   def index
     @playlists=Playlist.all
   end
 
-  def user_playlists
-    @playlists=current_user.playlists
-  end
-
   def show
     @playlist=Playlist.find_by(id: params[:id])
-  end
-
-  def user_playlists
-    @playlists=current_user.playlists
   end
 
   def new
@@ -46,7 +42,9 @@ class PlaylistsController < ApplicationController
 
   def destroy
     @playlist=current_user.playlists.find_by(id: params[:id])
-    @playlist.destroy
+    if @playlist
+      @playlist.destroy
+    end
     redirect_to playlists_path
   end
 

@@ -2,7 +2,16 @@ class SongsController < ApplicationController
   # before_action :require_login
   
   def index
-    @songs=Song.all
+    # binding.pry
+    if params[:search]
+      @songs=Song.by_genre(params[:search])
+    else
+      @songs=Song.all
+    end
+  end
+
+  def user_songs
+    @songs=current_user.songs
   end
 
   def show
@@ -37,7 +46,9 @@ class SongsController < ApplicationController
 
   def destroy
     @song=current_user.songs.find_by(id: params[:id])
-    @song.destroy
+    if @song
+      @song.destroy
+    end
     redirect_to songs_path
   end
 

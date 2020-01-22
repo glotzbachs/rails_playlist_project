@@ -10,9 +10,8 @@
 </ul>
 
 <%= link_to 'New Song', new_song_path %>
-
 <br>
-<br>
-<br>
-
-<%= link_to 'Playlists', playlists_path %>
+<%= form_tag '/songs', method: :get %>
+<%= label_tag 'Search by genre'%>
+<%= text_field_tag 'search'  %>
+<%= submit_tag 'Search'%>

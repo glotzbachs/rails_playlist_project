@@ -8,6 +8,10 @@
             Welcome <%= current_user.email %>!
             <br><%= link_to 'Home', root_path %>
             <br><%= link_to 'Logout', destroy_user_session_path, method:'delete' %>
+            <br><%= link_to 'All Playlists', playlists_path %>
+            <br><%= link_to 'Your Playlists', user_playlists_path %>
+            <br><%= link_to 'All Songs', songs_path %>
+            <br><%= link_to 'Your Songs', '/songs/user_songs'%>
             </p>
         <% end %>
     </ul>

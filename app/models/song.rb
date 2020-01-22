@@ -6,4 +6,5 @@ class Song < ApplicationRecord
 
     validates :title, presence: true
     
+    scope :by_genre, ->(genre) { where("genre = ?", genre) }
 end
